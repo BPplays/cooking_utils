@@ -11,10 +11,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    const textCol = Color(0xffcdd6f4);
     const accentCol = Color(0xfff5c2e7);
-    const bgCol = Color(0xff1e1e2e);
+
+    const textCol = Color(0xffcdd6f4);
     const sbtxt1Col = Color(0xffbac2de);
+
+    const bgCol = Color(0xff1e1e2e);
+    const srf1Col = Color(0xff313244);
 
     return MaterialApp(
       title: 'Flutter Demo test',
@@ -47,7 +50,17 @@ class MyApp extends StatelessWidget {
           color: Colors.blue,
           iconTheme: IconThemeData(color: textCol),
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: accentCol, primary: accentCol, onSurface: textCol, surface: bgCol, brightness: Brightness.dark).copyWith(brightness: Brightness.dark),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: bgCol,
+          inversePrimary: accentCol,
+          primary: accentCol,
+          onPrimary: srf1Col,
+          secondary: accentCol,
+          tertiary: accentCol,
+          onSurface: textCol,
+          surface: bgCol,
+          brightness: Brightness.dark
+        ).copyWith(brightness: Brightness.dark),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -99,10 +112,13 @@ class _MyHomePageState extends State<MyHomePage> {
         // TRY THIS: Try changing the color here to a specific color (to
         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
         // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -137,6 +153,8 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
